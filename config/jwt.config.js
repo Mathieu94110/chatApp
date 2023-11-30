@@ -1,4 +1,4 @@
-const secret = "a2463421-b798-470a-b4ee-fd23783ec69d";
+const secret = process.env.SECRETFORJWT;
 const jwt = require("jsonwebtoken");
 const { findUserPerId } = require("../queries/user.queries");
 const { app } = require("../app");
@@ -7,7 +7,7 @@ const createJwtToken = ({ user = null, id = null }) => {
   const jwtToken = jwt.sign(
     {
       sub: id || user._id.toString(),
-      exp: Math.floor(Date.now() / 1000) + 5,
+      exp: Math.floor(Date.now() / 1000) + 60,
     },
     secret
   );
@@ -24,17 +24,25 @@ const checkExpirationToken = (token, res) => {
   } else if (nowInSec > tokenExp && nowInSec - tokenExp < 60 * 60 * 24) {
     const refreshedToken = createJwtToken({ id: token.sub });
     res.cookie("jwt", refreshedToken);
-    return jwt.verify(refreshedToken, secret);
+    return jwt.decode(refreshedToken);
   } else {
     throw new Error("token expired");
   }
 };
 
+const decodeJwtToken = (token) => {
+  return jwt.verify(token, secret);
+};
+
+exports.decodeJwtToken = decodeJwtToken;
+
 const extractUserFromToken = async (req, res, next) => {
   const token = req.cookies.jwt;
   if (token) {
     try {
-      let decodedToken = jwt.verify(token, secret, { ignoreExpiration: true });
+      let decodedToken = jwt.verify(token, secret, {
+        ignoreExpiration: true,
+      });
       decodedToken = checkExpirationToken(decodedToken, res);
       const user = await findUserPerId(decodedToken.sub);
       if (user) {

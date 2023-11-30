@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Inscription</title>
+    <title>Mon title</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -11,24 +11,24 @@
     <script src="/javascripts/index.js"></script>
   </head>
   <body class="d-flex flex-column">
-    <div class="container-fluid d-flex flex-column flex-fill">
-      <%- include('partials/topbar.ejs', {user: null}) %>
+    <div class="flex-fill container-fluid d-flex flex-column">
+      <%- include('partials/topbar.ejs', { user: null }) %>
       <div
-        class="d-flex flex-column flex-fill align-items-center justify-content-center w-100"
+        class="flex-fill d-flex flex-column align-items-center justify-content-center w-100"
       >
-        <h1>Inscription</h1>
+        <h4>Inscription</h4>
         <div class="d-flex flex-row">
           <form method="post" action="/users">
             <div class="mb-3">
-              <label>Nom d'utilisateur : </label>
+              <label>Username : </label>
               <input class="form-control" type="text" name="username" />
             </div>
             <div class="mb-3">
-              <label>Mot de passe : </label>
+              <label>Password : </label>
               <input class="form-control" type="password" name="password" />
             </div>
             <div class="mb-3">
-              <label>Email : </label>
+              <label>email : </label>
               <input class="form-control" type="email" name="email" />
             </div>
             <div>
