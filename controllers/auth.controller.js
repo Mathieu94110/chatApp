@@ -14,10 +14,10 @@ exports.signin = async (req, res, next) => {
         req.login(user);
         res.redirect("/");
       } else {
-        res.render("signin", { error: "Wrong password" });
+        res.render("signin", { error: "Mauvais mot de passe" });
       }
     } else {
-      res.render("signin", { error: "User not found" });
+      res.render("signin", { error: "Utilisateur non trouvé !" });
     }
   } catch (e) {
     next(e);

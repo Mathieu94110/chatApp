@@ -11,32 +11,87 @@
     <script src="/javascripts/index.js"></script>
   </head>
   <body class="d-flex flex-column">
-    <div class="flex-fill container-fluid d-flex flex-column">
-      <%- include('partials/topbar.ejs', { user: null }) %>
-      <div
-        class="flex-fill d-flex flex-column align-items-center justify-content-center w-100"
-      >
-        <h4>Inscription</h4>
-        <div class="d-flex flex-row">
-          <form method="post" action="/users">
-            <div class="mb-3">
-              <label>Username : </label>
-              <input class="form-control" type="text" name="username" />
+    <section>
+      <div class="d-flex flex-column vh-100">
+        <%- include('partials/topbar.ejs', { user: null }) %>
+        <form
+          class="container row justify-content-center flex-fill d-flex flex-column align-items-center align-self-center"
+          method="post" action="/users"
+        >
+          <div class="col-md-12 col-lg-10">
+            <div class="wrap d-md-flex">
+              <div
+                class="img"
+                style="
+                  background-image: url(https://cdn.asriran.com/files/fa/news/1402/2/21/1570169_340.jpg);
+                "
+              ></div>
+              <div class="login-wrap p-4 p-md-5">
+                <div class="d-flex">
+                  <div class="w-100">
+                    <h3 class="mb-4" style="color: #2c2f33">Inscription</h3>
+                  </div>
+                </div>
+                <form method="post" action="/users">
+                  <div class="form-group mb-3">
+                    <label class="label" for="name" style="color: #2c2f33"
+                      >Nom</label
+                    >
+                    <input
+                      class="form-control"
+                      type="text"
+                      name="username"
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="label" for="email" style="color: #2c2f33"
+                      >Email</label
+                    >
+                    <input
+                      class="form-control"
+                      type="email"
+                      name="email" 
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="label" for="password" style="color: #2c2f33"
+                      >Mot de passe</label
+                    >
+                    <input
+                      type="password"
+                      name="password"
+                      class="form-control"
+                      placeholder="Password"
+                      required
+                    />
+                  </div>
+                  <% if (error) { %>
+                  <p style="color: red"><%= error %></p>
+                  <% } %>
+                  <div class="form-group">
+                    <button
+                      type="submit"
+                      class="form-control btn btn-primary rounded submit px-3"
+                    >
+                      S'inscrire
+                    </button>
+                  </div>
+                </form>
+                <p class="text-center mt-2">
+                  <span style="color: #2c2f33"> Déja inscrit ?</span>
+                  <span>
+                    <a data-toggle="tab" style="color: #2c2f33" href=/auth/signin/form
+                      >Se connecter</a
+                    >
+                  </span>
+                </p>
+              </div>
             </div>
-            <div class="mb-3">
-              <label>Password : </label>
-              <input class="form-control" type="password" name="password" />
-            </div>
-            <div class="mb-3">
-              <label>email : </label>
-              <input class="form-control" type="email" name="email" />
-            </div>
-            <div>
-              <button class="btn btn-primary">Inscription</button>
-            </div>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
-    </div>
+    </section>
   </body>
 </html>
