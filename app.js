@@ -1,13 +1,12 @@
-if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config();
-}
-const path = require("path");
 const express = require("express");
+const app = express();
+require("dotenv").config();
+const path = require("path");
 require("./database");
 const router = require("./routes");
 const cookieParser = require("cookie-parser");
-const app = express();
-const server = app.listen(3000);
+
+const server = app.listen(process.env.PORT);
 module.exports = {
   server,
   app,
