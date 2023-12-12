@@ -10,6 +10,20 @@ const {
 let ios;
 let namespaces;
 
+const initSocketServer = () => {
+  ios = socketio(server, {
+    allowRequest: ensureAuthenticatedOnSocketHandshake,
+  });
+  ios.on("connect", (socket) => {
+    socket.emit("namespaces", namespaces);
+  });
+
+  ios.on("close", (socket) => {
+    socket.disconnect(true);
+  });
+  initNamespaces();
+};
+
 const initNamespaces = async () => {
   try {
     namespaces = await getNamespaces();
@@ -53,20 +67,6 @@ const initNamespaces = async () => {
   } catch (e) {
     throw e;
   }
-};
-
-const initSocketServer = () => {
-  ios = socketio(server, {
-    allowRequest: ensureAuthenticatedOnSocketHandshake,
-  });
-  ios.on("connect", (socket) => {
-    socket.emit("namespaces", namespaces);
-  });
-
-  ios.on("close", (socket) => {
-    socket.disconnect(true);
-  });
-  initNamespaces();
 };
 
 initSocketServer();
