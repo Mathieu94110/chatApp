@@ -21,11 +21,13 @@ exports.ensureAuthenticatedOnSocketHandshake = async (request, success) => {
         success(null, true);
       } else {
         success(400, false);
+        throw "Err ensureAuthenticatedOnSocketHandshake =";
       }
     } else {
       success(403, false);
     }
   } catch (e) {
     success(400, false);
+    throw ("Err ensureAuthenticatedOnSocketHandshake =", e);
   }
 };
