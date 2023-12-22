@@ -22,6 +22,7 @@ const initSocketServer = () => {
     socket.disconnect(true);
   });
   initNamespaces();
+  console.log("initSocketServer ");
 };
 
 const initNamespaces = async () => {
@@ -65,6 +66,7 @@ const initNamespaces = async () => {
       });
     }
   } catch (e) {
+    console.log("error initNamespaces");
     throw e;
   }
 };

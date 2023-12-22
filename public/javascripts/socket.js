@@ -13,7 +13,7 @@ const ioClient = io({
 ioClient.on("connect", () => {
   console.log("connexion io client ok !");
 });
-
+console.log("client above");
 ioClient.on("namespaces", (data) => {
   namespaces = data;
   for (let ns of namespaces) {

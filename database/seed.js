@@ -5,7 +5,7 @@ mongoose
     `mongodb+srv://me94110:${process.env.MONGO_PASSWORD}@cluster0.pldw0v1.mongodb.net/?retryWrites=true&w=majority`
   )
   .then(() => {
-    console.log("connexion ok !");
+    console.log("connexion ok ! ");
 
     const ns1 = new Namespace({
       imgUrl: "/images/earth.jpg",
@@ -54,7 +54,7 @@ mongoose
         title: "Hors sujet",
       });
       Promise.all([room1.save(), room2.save()]).then(() => {
-        console.log("ns2's room created");
+        console.log("ns2's room created !");
       });
     });
 

@@ -4,7 +4,7 @@ exports.userNew = (req, res, next) => {
   res.render("signup", { error: null });
 };
 
-exports.userCreate = async (req, res, next) => {
+exports.userCreate = async (req, res) => {
   try {
     const body = req.body;
     const user = await createUser(body);
