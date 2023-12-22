@@ -1,3 +1,4 @@
+let io = require("socket.io");
 let namespaces;
 let namespaceSockets = [];
 let rooms = [];
